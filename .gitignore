@@ -1,0 +1,28 @@
+# Python
+.env
+*.egg
+*.egg-info
+dist
+build
+*.log
+*.pyc
+*.pyo
+# Byte-compiled / optimized / DLL files
+__pycache__
+# Installer logs
+pip-log.txt
+pip-delete-this-directory.txt
+# Unit test / coverage reports
+htmlcov
+.tox
+.pytest_cache
+# Django
+*.sqlite3
+local_settings.py
+db.sqlite3
+# Scrapy
+.scrapy
+# Sphinx
+docs/_build
+venv
+test
