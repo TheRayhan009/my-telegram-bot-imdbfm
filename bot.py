@@ -1,9 +1,8 @@
 import telebot
 import os
-from dotenv import load_dotenv
-load_dotenv()
-token = os.getenv("TOKEN")
-bot = telebot.TeleBot(token)
+from config import BOT_TOKEN, TMDB_API_KEY, USERNAME
+
+bot = telebot.TeleBot(BOT_TOKEN)
 i=0
 user_name="@rayhan_py"
 @bot.message_handler(['start'])
