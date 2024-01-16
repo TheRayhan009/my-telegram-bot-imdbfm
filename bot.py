@@ -16,7 +16,12 @@ user_name="@rayhan_py"
 def start(massage):
     type_input=" "
     print("requested...")
-    bot.reply_to(massage,"""hello my friend """ +user_name+ """ .how are you?? i am imdbfm bot . to help enter "/help ".To know about me "/about".""")
+    bot_name = bot.get_me().first_name
+    user_name = massage.from_user.first_name 
+    user_last_name = massage.from_user.last_name 
+    bot.reply_to(massage,"""hello my friend """ +user_name+" "+user_last_name+ """ .
+how are you??
+I am IMDBFM bot . To help enter "/help ".To know about me enter "/about".""")
     print("delivered...")
 @bot.message_handler(['exit'])
 def exit(massage):
