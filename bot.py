@@ -4,7 +4,7 @@ from dotenv import load_dotenv
 from datetime import datetime
 from datetime import date
 load_dotenv()
-token = os.getenv("TOKEN")
+token = 'enter your bot token'
 bot = telebot.TeleBot(token)
 i="0"
 type_input=" "
