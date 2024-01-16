@@ -8,8 +8,6 @@ token = os.getenv("TOKEN")
 bot = telebot.TeleBot(token)
 i="0"
 type_input=" "
-
-user_name="@rayhan_py"
 #commands ->
 #\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/
 @bot.message_handler(['start'])
@@ -19,7 +17,7 @@ def start(massage):
     bot_name = bot.get_me().first_name
     user_name = massage.from_user.first_name 
     user_last_name = massage.from_user.last_name 
-    bot.reply_to(massage,"""hello my friend """ +user_name+" "+user_last_name+ """ .
+    bot.send_message(massage.chat.id,"""hello my friend """ +user_name+" "+user_last_name+ """ .
 how are you??
 I am IMDBFM bot . To help enter "/help ".To know about me enter "/about".""")
     print("delivered...")
@@ -27,13 +25,13 @@ I am IMDBFM bot . To help enter "/help ".To know about me enter "/about".""")
 def exit(massage):
     global type_input
     print("requested...")
-    bot.reply_to(massage,"You successfully exited. For restart /start")
+    bot.send_message(massage.chat.id,"You successfully exited. For restart /start")
     type_input=" "
     print("delivered...")
 @bot.message_handler(['help'])
 def help(massage):
     print("requested...")
-    bot.reply_to(massage,"""for movies - m
+    bot.send_message(massage.chat.id,"""for movies - m
 for web series - s
 for Time - /time
 for Date - /date
@@ -43,12 +41,12 @@ for know about me - /about""")
 @bot.message_handler(['reset'])
 def reset(massage):
     print("requested...")
-    bot.reply_to(massage,"""for movies - m
+    bot.send_message(massage.chat.id,"""for movies - m
 for web series - s""")
     print("delivered...")
 @bot.message_handler(['again'])
 def reset(massage):
-    bot.reply_to(massage,"Go on!!!")
+    bot.send_message(massage.chat.id,"Go on!!!")
 @bot.message_handler(['time'])
 def time(massage):
     current_time1 = datetime.now()
@@ -72,7 +70,7 @@ def day(massage):
 @bot.message_handler(['about'])
 def about(massage):
     print("requested...")
-    bot.reply_to(massage,"""Hello. Iam IMDBFM a telegram bot.
+    bot.send_message(massage.chat.id,"""Hello. Iam IMDBFM a telegram bot.
 My job is to show you the IMDB rating of any movie and if there is any free source of that movie, share the link with you.
 Besides, You can know many things from me.
 like : 
