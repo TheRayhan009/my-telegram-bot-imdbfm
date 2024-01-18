@@ -4,10 +4,10 @@ from dotenv import load_dotenv
 from datetime import datetime
 from datetime import date
 load_dotenv()
-token = os.getenv("TOKEN")
 token = 'enter your bot token'
 bot = telebot.TeleBot(token)
 i="0"
+x="1"
 oparation_time=1
 type_input=" "
 
@@ -30,9 +30,13 @@ I am IMDBFM bot . To help enter "/help ".To know about me enter "/about".""")
 def exit(massage):
     global oparation_time
     global type_input
+    global x
+    global i
     print("requested...",oparation_time)
     bot.send_message(massage.chat.id,"You successfully exited. For restart /start")
     type_input=" "
+    x="0"
+    i="0"
     print("delivered...",oparation_time)
     oparation_time=oparation_time+1
 @bot.message_handler(['help'])
@@ -94,11 +98,11 @@ def about(massage):
 My job is to show you the IMDB rating of any movie and if there is any free source of that movie, share the link with you.
 Besides, You can know many things from me.
 like : 
-        1.Time "/time" 
-        2.Date "/date" 
-        3.Day "/day"
-        4.Help "/help"
-        5.Sentences "/sentences"
+        1. Time "/time" 
+        2. Date "/date" 
+        3. Day "/day"
+        4. Help "/help"
+        5. Sentences "/sentences"
 Instructions = " https://github.com/TheRayhan009/my-telegram-bot-imdbfm/blob/main/README.md "
         """)
     print("delivered...",oparation_time)
@@ -118,7 +122,9 @@ def about(massage):
 @bot.message_handler()
 def handle_message(massage):
     global oparation_time
+    global x
     #time 
+    #\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/
     current_time1 = datetime.now()
     current_time2 = current_time1.strftime("%I:%M %p")
     todays_date=datetime.today().date()
@@ -254,7 +260,7 @@ Instructions = " https://github.com/TheRayhan009/my-telegram-bot-imdbfm/blob/mai
     #unexpected error ->
     #\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/
         
-    if i!="1":
+    if i!="1" and x=="1":
         print("requested...",oparation_time)
         bot.send_message(massage.chat.id,"""opss!! chack your searching type or we donot have this movei / web seise .
 To reset type "/reset".
@@ -268,7 +274,10 @@ we have movei / web seise like :
                      
 for exit - /exit
 """)
-
+        print("delivered...",oparation_time)
+    elif x=="0" and i=="0" and type_input==" ":
+        print("requested...",oparation_time)
+        bot.send_message(massage.chat.id,"you alrady exited . To start - ""/reset" "")
         print("delivered...",oparation_time)
         oparation_time=oparation_time+1
     
